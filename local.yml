@@ -1,5 +1,5 @@
 - hosts: localhost
-  become: yes
+  become: true
 
 - import_playbook: system/core.yml
 - import_playbook: system/dotfiles.yml
