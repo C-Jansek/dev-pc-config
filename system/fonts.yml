@@ -1,0 +1,45 @@
+- name: Install fonts
+  hosts: localhost
+  become: yes
+
+  vars:
+    fonts:
+      # FiraCode Nerd Font
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Medium/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/SemiBold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      # Hack Nerd Font
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Bold/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Italic/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Italic/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/BoldItalic/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+      - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/BoldItalic/complete/Fira%20Code%20Bold%20Nerd%20Font%20Complete.ttf
+
+  tasks:
+    - name: Install Fonts (downloaded)
+      become: yes
+      get_url:
+        url: "{{ item }}"
+        dest: /usr/local/share/fonts/
+      loop: "{{ fonts }}"
+      register: fonts_downloaded
+
+    - name: Update font cache
+      become: yes
+      command: fc-cache -sv
+      when: fonts_downloaded.changed
+
+    - name: Update APT package list
+      become: yes
+      apt:
+        update_cache: yes
+      when: apt_repository.changed
+      register: apt_update
+      retries: 5
+      until: apt_update is success

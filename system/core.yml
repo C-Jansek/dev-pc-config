@@ -1,0 +1,24 @@
+- name: Core OS configuration
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: "Install system packages"
+      apt:
+        name:
+          - snapd
+          - bash-completion
+          - cargo
+          - libnotify-bin
+          - xclip
+          - composer
+          - filezilla
+          - exa
+          - vim
+      state: latest
+
+    - name: "Install Snapd packages"
+      community.general.snap:
+        name:
+          - espanso
+        classic: yes

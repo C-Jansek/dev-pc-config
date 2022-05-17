@@ -1,0 +1,26 @@
+- name: Dotfiles configuration
+  hosts: localhost
+  become: yes
+
+  vars:
+    - user: "jansek"
+    - dotfiles_repo: "git@github.com:C-Jansek/.dotfiles.git"
+    - ssh_key: ".ssh/id_rsa"
+
+  tasks:
+    - name: "Check out dotfiles from repository"
+      git:
+        repos: "{{ dotfiles_repo }}"
+        dest: ./tmp-dotfiles
+        accept_hostkey: yes
+        key_file: "/home/{{ user }}/{{ ssh_key }}"
+        force: yes
+      delegate_to: localhost
+      run_once: true
+      become: no
+
+      # Copy configuration files
+    - name: "Sync config files"
+      ansible.posix.synchronize:
+        src: ./tmp-dotfiles/dotfiles
+        dest: /home/{{ user }}/

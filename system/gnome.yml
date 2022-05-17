@@ -1,0 +1,82 @@
+- name: Core OS customization (Gnome UI)
+  hosts: localhost
+  become: yes
+
+  vars:
+    dconf_config:
+      # # Fonts
+      # - key: /org/gnome/desktop/interface/monospace-font-name
+      #   value: "'UbuntuMono Nerd Font Mono 12'"
+      # UI tweaks
+      - key: /org/gnome/desktop/wm/preferences/button-layout
+        value: "'appmenu:minimize,maximize,close'"
+      - key: /org/gnome/shell/favorite-apps
+        value: "['org.gnome.Terminal.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop']"
+      # Keyboard shortcuts
+      - key: /org/gnome/desktop/wm/keybindings/maximize
+        value: "['<Super>Up']"
+      # - key: /org/gnome/shell/extensions/emoji-selector/emoji-keybinding
+      #   value: "['<Super>Period']"
+      # - key: /org/gnome/shell/extensions/emoji-selector/use-keybinding
+      #   value: "true"
+      - key: /org/gnome/shell/favorite-apps
+        value: "['org.gnome.Terminal.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop']"
+      - key: /org/gnome/shell/extensions/dash-to-dock/click-action
+        value: "cycle-windows"
+      - key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
+        value: "48"
+      - key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
+        value: "true"
+      - key: /org/gnome/shell/extensions/dash-to-dock/dock-position
+        value: "LEFT"
+
+      - key: /org/gnome/shell/extensions/pop-cosmic/overlay-key-action
+        value: "LAUNCHER"
+      - key: /org/gnome/shell/extensions/pop-cosmic/show-workspaces-button
+        value: "false"
+
+      # Terminal config
+      - key: /org/gnome/terminal/legacy/profiles/default
+        value: "edc375a7-61a3-4686-ad4e-8bd6b15ccded"
+      - key: /org/gnome/terminal/legacy/profiles/list
+        value: "['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'edc375a7-61a3-4686-ad4e-8bd6b15ccded']"
+
+      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/custom-command
+        value: "fish"
+      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/font
+        value: "Hack Nerd Font Mono 12"
+      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/use-custom-command
+        value: "true"
+      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/visible-name
+        value: "jansek"
+
+    gnome_extensions:
+      # Emoji Selector
+      # - name: emoji-selector@maestroschan.fr
+      #   url: https://extensions.gnome.org/extension-data/emoji-selectormaestroschan.fr.v15.shell-extension.zip
+
+  tasks:
+    # - name: Create GNOME extension directory
+    #   file:
+    #     path: ~/.local/share/gnome-shell/extensions/{{ item.name }}
+    #     state: directory
+    #   register: new_extensions
+    #   loop: "{{ gnome_extensions }}"
+
+    # - name: Extract GNOME extension
+    #   unarchive:
+    #     src: "{{ item.item.url }}"
+    #     dest: "~/.local/share/gnome-shell/extensions/{{ item.item.name }}"
+    #     creates: "~/.local/share/gnome-shell/extensions/{{ item.item.name }}/metadata.json"
+    #     remote_src: yes
+    #   loop: "{{ new_extensions.results }}"
+
+    # - name: Enable GNOME extension
+    #   command: gnome-shell-extension-tool -e "{{ item.item.name }}"
+    #   loop: "{{ new_extensions.results }}"
+
+    - name: Update customization with dconf
+      dconf:
+        key: "{{ item.key }}"
+        value: "{{ item.value }}"
+      loop: "{{ dconf_config }}"
