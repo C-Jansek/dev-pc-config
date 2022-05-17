@@ -9,18 +9,13 @@
       #   value: "'UbuntuMono Nerd Font Mono 12'"
       # UI tweaks
       - key: /org/gnome/desktop/wm/preferences/button-layout
-        value: "'appmenu:minimize,maximize,close'"
+        value: "appmenu:minimize,close"
+      - key: /org/gnome/desktop/interface/clock-format
+        value: "24h"
+
       - key: /org/gnome/shell/favorite-apps
         value: "['org.gnome.Terminal.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop']"
-      # Keyboard shortcuts
-      - key: /org/gnome/desktop/wm/keybindings/maximize
-        value: "['<Super>Up']"
-      # - key: /org/gnome/shell/extensions/emoji-selector/emoji-keybinding
-      #   value: "['<Super>Period']"
-      # - key: /org/gnome/shell/extensions/emoji-selector/use-keybinding
-      #   value: "true"
-      - key: /org/gnome/shell/favorite-apps
-        value: "['org.gnome.Terminal.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop']"
+
       - key: /org/gnome/shell/extensions/dash-to-dock/click-action
         value: "cycle-windows"
       - key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
@@ -29,6 +24,21 @@
         value: "true"
       - key: /org/gnome/shell/extensions/dash-to-dock/dock-position
         value: "LEFT"
+
+      - key: /org/gnome/shell/extensions/pop-cosmic/show-applications-button
+        value: "false"
+      - key: /org/gnome/shell/extensions/pop-cosmic/show-workspaces-button
+        value: "false"
+
+      # Keyboard shortcuts
+      - key: /org/gnome/desktop/wm/keybindings/maximize
+        value: "['<Super>Up']"
+
+      # Extensions
+      # - key: /org/gnome/shell/extensions/emoji-selector/emoji-keybinding
+      #   value: "['<Super>Period']"
+      # - key: /org/gnome/shell/extensions/emoji-selector/use-keybinding
+      #   value: "true"
 
       - key: /org/gnome/shell/extensions/pop-cosmic/overlay-key-action
         value: "LAUNCHER"
