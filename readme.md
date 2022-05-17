@@ -9,3 +9,7 @@
     ```bash
     sudo ansible-pull -U https://github.com/C-Jansek/dev-pc-config.git
     ```
+
+Todo:
+
+-   [ ] [Configure automating ansible-pull](https://opensource.com/article/18/3/manage-your-workstation-configuration-ansible-part-2)
