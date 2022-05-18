@@ -4,12 +4,10 @@
 
   tasks:
     - name: Add Microsoft APT package key
-      become: yes
       apt_key:
         url: https://packages.microsoft.com/keys/microsoft.asc
 
     - name: Add VS Code APT package repository
-      become: yes
       apt_repository:
         repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
         filename: vscode
@@ -17,7 +15,6 @@
       register: apt_repository
 
     - name: Update APT package list
-      become: yes
       apt:
         update_cache: yes
       when: apt_repository.changed
@@ -26,7 +23,5 @@
       until: apt_update is success
 
     - name: Install VS Code (Linux)
-      become: yes
       apt:
         package: code
-      when: not is_wsl and not is_mac

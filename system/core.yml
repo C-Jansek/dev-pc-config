@@ -1,4 +1,4 @@
-- name: Core OS configuration
+- name: Install packages
   hosts: localhost
   become: yes
 
@@ -15,7 +15,7 @@
           - filezilla
           - exa
           - vim
-      state: latest
+        state: latest
 
     - name: "Install Snapd packages"
       community.general.snap:

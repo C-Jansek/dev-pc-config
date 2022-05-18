@@ -1,0 +1,24 @@
+- name: Install and configure Google Chrome
+  hosts: localhost
+  become: yes
+
+  vars:
+    - user: "jansek"
+    - package_url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+    - package_name: "google-chrome-stable"
+
+  tasks:
+    - name: "Check if {{ package_name }} is installed"
+      command: "dpkg-query -W {{ package_name }}"
+      register: my_package_check_deb
+      failed_when: my_package_check_deb.rc > 1
+      changed_when: my_package_check_deb.rc == 1
+    - name: "Download {{ package_name }}"
+      get_url:
+        url: "{{ package_url }}"
+        dest: "/home/{{ user }}/Downloads/{{ package_name }}.deb"
+      when: my_package_check_deb.rc == 1
+    - name: "Install {{ package_name }}"
+      apt:
+        deb: "/home/{{ user }}/Downloads/{{ package_name }}.deb"
+      when: my_package_check_deb.rc == 1

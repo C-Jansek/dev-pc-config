@@ -66,6 +66,14 @@
       #   url: https://extensions.gnome.org/extension-data/emoji-selectormaestroschan.fr.v15.shell-extension.zip
 
   tasks:
+    - name: Install dconf requirements
+      become: true
+      apt:
+        name:
+          - python3-psutil
+          - dconf-cli
+          - dbus
+
     # - name: Create GNOME extension directory
     #   file:
     #     path: ~/.local/share/gnome-shell/extensions/{{ item.name }}
