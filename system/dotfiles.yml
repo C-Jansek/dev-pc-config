@@ -10,7 +10,7 @@
   tasks:
     - name: "Check out dotfiles from repository"
       git:
-        repos: "{{ dotfiles_repo }}"
+        repo: "{{ dotfiles_repo }}"
         dest: ./tmp-dotfiles
         accept_hostkey: yes
         key_file: "/home/{{ user }}/{{ ssh_key }}"
