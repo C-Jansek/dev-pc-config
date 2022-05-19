@@ -55,3 +55,4 @@
       register: apt_update
       retries: 5
       until: apt_update is success
+      ignore_errors: yes
