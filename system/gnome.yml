@@ -11,7 +11,7 @@
       - key: /org/gnome/desktop/wm/preferences/button-layout
         value: "'appmenu:minimize,close'"
       - key: /org/gnome/desktop/interface/clock-format
-        value: "'24h'"
+        value: "'12h'"
 
       - key: /org/gnome/shell/favorite-apps
         value:
