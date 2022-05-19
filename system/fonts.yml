@@ -40,6 +40,7 @@
         src: "{{ hack_zip }}"
         dest: "{{ lookup('env', 'HOME') }}/.fonts/"
         remote_src: yes
+      register: fonts_downloaded
 
     - name: Update font cache
       become: yes
