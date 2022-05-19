@@ -5,25 +5,22 @@
   vars:
     - user: "jansek"
     - dotfiles_repo: "git@github.com:C-Jansek/.dotfiles.git"
-    - ssh_key: ".ssh/id_ed25519"
+    - ssh_key: ".ssh/id_rsa"
 
   tasks:
-    - name: "check if can reach git"
-      shell: "ssh -T git@github.com"
-    # - name: "Check out dotfiles from repository"
-    #   git:
-    #     repo: "{{ dotfiles_repo }}"
-    #     dest: "/home/{{ user }}/tmp-dotfiles"
-    #     #     clone: yes
-    #     #     accept_hostkey: yes
-    #     key_file: "/home/{{ user }}/{{ ssh_key }}"
-    #     version: master
-    #   delegate_to: localhost
-    #   run_once: true
-    #   become: no
+    - name: "Check out dotfiles from repository"
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: ./tmp-dotfiles
+        accept_hostkey: yes
+        key_file: "/home/{{ user }}/{{ ssh_key }}"
+        force: yes
+      delegate_to: localhost
+      run_once: true
+      become: no
 
-    #   # Copy configuration files
-    # - name: "Sync config files"
-    #   ansible.posix.synchronize:
-    #     src: ./tmp-dotfiles/dotfiles
-    #     dest: /home/{{ user }}/
+      # Copy configuration files
+    - name: "Sync config files"
+      ansible.posix.synchronize:
+        src: ./tmp-dotfiles/dotfiles
+        dest: /home/{{ user }}/
