@@ -23,6 +23,11 @@
       - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Nerd%20Font%20Complete.ttf
 
   tasks:
+    - name: Ensure fonts directory exists
+      file:
+      path: "{{ lookup('env', 'HOME') }}/.fonts"
+      state: directory
+      
     - name: Install Fonts (downloaded)
       become: yes
       get_url:
