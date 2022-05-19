@@ -16,5 +16,7 @@
 - import_playbook: languages/node/core.yml
 
 - import_playbook: applications/vscode/core.yml
+- import_playbook: applications/browsers/chrome/ore.yml
+- import_playbook: applications/browsers/firefox/core.yml
 
 - import_playbook: system/gnome.yml
