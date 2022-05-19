@@ -52,9 +52,9 @@
         value: "false"
 
       # Terminal config
-      - key: /org/gnome/terminal/legacy/profiles/default
+      - key: /org/gnome/terminal/legacy/profiles:/default
         value: "'edc375a7-61a3-4686-ad4e-8bd6b15ccded'"
-      - key: /org/gnome/terminal/legacy/profiles/list
+      - key: /org/gnome/terminal/legacy/profiles:/list
         value:
           [
             "b1dcc9dd-5262-4d8d-a863-c897e6d979b9",
