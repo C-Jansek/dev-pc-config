@@ -3,6 +3,7 @@
   become: yes
 
   vars:
+    user: "jansek"
     fonts:
       # FiraCode Nerd Font
       - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
@@ -26,7 +27,7 @@
       become: yes
       get_url:
         url: "{{ item }}"
-        dest: /usr/local/share/fonts/
+        dest: "/home/{{ user }}/.fonts/"
       loop: "{{ fonts }}"
       register: fonts_downloaded
 
