@@ -11,5 +11,5 @@
     # Copy configuration files
     - name: "Sync config files"
       ansible.posix.synchronize:
-        src: "~/tmp-dotfiles/dotfiles"
-        dest: /home/{{ user }}/
+        src: "/home/{{ user }}/tmp-dotfiles/dotfiles"
+        dest: "/home/{{ user }}/"
