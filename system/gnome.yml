@@ -9,30 +9,36 @@
       #   value: "'UbuntuMono Nerd Font Mono 12'"
       # UI tweaks
       - key: /org/gnome/desktop/wm/preferences/button-layout
-        value: "appmenu:minimize,close"
+        value: "'appmenu:minimize,close'"
       - key: /org/gnome/desktop/interface/clock-format
-        value: "24h"
+        value: "'24h'"
 
       - key: /org/gnome/shell/favorite-apps
-        value: "['org.gnome.Terminal.desktop', 'firefox.desktop', 'org.gnome.Nautilus.desktop', 'code.desktop']"
+        value:
+          [
+            "org.gnome.Terminal.desktop",
+            "firefox.desktop",
+            "org.gnome.Nautilus.desktop",
+            "code.desktop",
+          ]
 
       - key: /org/gnome/shell/extensions/dash-to-dock/click-action
-        value: "cycle-windows"
+        value: "'cycle-windows'"
       - key: /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size
         value: "48"
       - key: /org/gnome/shell/extensions/dash-to-dock/dock-fixed
         value: "true"
       - key: /org/gnome/shell/extensions/dash-to-dock/dock-position
-        value: "LEFT"
+        value: "'LEFT'"
 
       - key: /org/gnome/shell/extensions/pop-cosmic/show-applications-button
         value: "false"
       - key: /org/gnome/shell/extensions/pop-cosmic/show-workspaces-button
         value: "false"
 
-      # Keyboard shortcuts
-      - key: /org/gnome/desktop/wm/keybindings/maximize
-        value: "['<Super>Up']"
+      # # Keyboard shortcuts
+      # - key: /org/gnome/desktop/wm/keybindings/maximize
+      #   value: "['<Super>Up']"
 
       # Extensions
       # - key: /org/gnome/shell/extensions/emoji-selector/emoji-keybinding
@@ -41,24 +47,28 @@
       #   value: "true"
 
       - key: /org/gnome/shell/extensions/pop-cosmic/overlay-key-action
-        value: "LAUNCHER"
+        value: "'LAUNCHER'"
       - key: /org/gnome/shell/extensions/pop-cosmic/show-workspaces-button
         value: "false"
 
       # Terminal config
       - key: /org/gnome/terminal/legacy/profiles/default
-        value: "edc375a7-61a3-4686-ad4e-8bd6b15ccded"
+        value: "'edc375a7-61a3-4686-ad4e-8bd6b15ccded'"
       - key: /org/gnome/terminal/legacy/profiles/list
-        value: "['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', 'edc375a7-61a3-4686-ad4e-8bd6b15ccded']"
+        value:
+          [
+            "b1dcc9dd-5262-4d8d-a863-c897e6d979b9",
+            "edc375a7-61a3-4686-ad4e-8bd6b15ccded",
+          ]
 
-      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/custom-command
-        value: "fish"
+      # - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/custom-command
+      #   value: "fish"
       - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/font
-        value: "Hack Nerd Font Mono 12"
-      - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/use-custom-command
-        value: "true"
+        value: "'Hack Nerd Font Mono 12'"
+      # - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/use-custom-command
+      #   value: "true"
       - key: /org/gnome/terminal/legacy/profiles:/:edc375a7-61a3-4686-ad4e-8bd6b15ccded/visible-name
-        value: "jansek"
+        value: "'jansek'"
 
     gnome_extensions:
       # Emoji Selector
