@@ -25,8 +25,8 @@
   tasks:
     - name: Ensure fonts directory exists
       file:
-      path: "{{ lookup('env', 'HOME') }}/.fonts"
-      state: directory
+        path: "{{ lookup('env', 'HOME') }}/.fonts"
+        state: directory
       
     - name: Install Fonts (downloaded)
       become: yes
