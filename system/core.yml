@@ -4,7 +4,7 @@
 
   tasks:
     - name: "Install system packages"
-      apt:
+      package:
         name:
           - snapd
           - bash-completion

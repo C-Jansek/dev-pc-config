@@ -11,7 +11,7 @@
       - key: /org/gnome/desktop/wm/preferences/button-layout
         value: "'appmenu:minimize,close'"
       - key: /org/gnome/desktop/interface/clock-format
-        value: "'12h'"
+        value: "'24h'"
 
       - key: /org/gnome/shell/favorite-apps
         value:
@@ -104,6 +104,7 @@
     #   loop: "{{ new_extensions.results }}"
 
     - name: Update customization with dconf
+      become_user: jansek
       dconf:
         key: "{{ item.key }}"
         value: "{{ item.value }}"

@@ -1,6 +1,6 @@
 - name: "Install new dev pc"
   hosts: localhost
-  connection: "local"
+  connection: local
   become: true
 
   pre_tasks:
@@ -8,13 +8,13 @@
       apt: update_cache=yes
       changed_when: False
 
-# - import_playbook: system/core.yml
-# - import_playbook: system/oh-my-posh.yml
-# - import_playbook: system/dotfiles.yml
-# - import_playbook: system/fonts.yml
+- import_playbook: system/core.yml
+- import_playbook: system/oh-my-posh.yml
+- import_playbook: system/dotfiles.yml
+- import_playbook: system/fonts.yml
 
-# - import_playbook: languages/node/core.yml
+- import_playbook: languages/node/core.yml
 
-# - import_playbook: applications/vscode/core.yml
+- import_playbook: applications/vscode/core.yml
 
 - import_playbook: system/gnome.yml
