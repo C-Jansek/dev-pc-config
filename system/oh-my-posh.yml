@@ -7,7 +7,7 @@
       shell:
         cmd: "wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh"
         warn: false
-      # creates: /usr/local/bin/oh-my-posh
+        creates: /usr/local/bin/oh-my-posh
     - name: change permissions oh-my-posh
       shell:
         cmd: "chmod +x /usr/local/bin/oh-my-posh"

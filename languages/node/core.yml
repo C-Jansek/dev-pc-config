@@ -6,4 +6,4 @@
       shell:
         cmd: "curl -o- https://get.volta.sh | bash"
         warn: false
-      creates: ~/.volta/volta.lock
+        creates: ~/.volta/volta.lock
