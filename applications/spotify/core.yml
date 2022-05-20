@@ -1,0 +1,9 @@
+- name: Install Spotify
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: "Install Spotify packages"
+      community.general.snap:
+        name:
+          - spotify

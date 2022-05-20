@@ -19,5 +19,6 @@
 - import_playbook: applications/browsers/chrome/core.yml
 - import_playbook: applications/browsers/firefox/core.yml
 - import_playbook: applications/slack/core.yml
+- import_playbook: applications/spotify/core.yml
 
 - import_playbook: system/gnome.yml
