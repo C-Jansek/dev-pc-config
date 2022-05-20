@@ -1,0 +1,9 @@
+- name: Install Slack
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: "Install Slack packages"
+      community.general.snap:
+        name:
+          - slack
