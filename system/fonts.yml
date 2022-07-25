@@ -1,5 +1,6 @@
 - name: Install fonts
   hosts: localhost
+  connection: local
   become: yes
 
   vars:
@@ -26,22 +27,31 @@
   tasks:
     - name: Ensure fonts directory exists
       file:
-        path: "{{ lookup('env', 'HOME') }}/.fonts"
+        path: "{{ lookup('env', 'HOME') }}/.fonts/hack"
         state: directory
+      register: dir_exists
 
     - name: Font exists
-      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Hack*Nerd*Font*Complete*"
+      when: dir_exists is not failed
+      stat:
+        path: "{{ lookup('env', 'HOME') }}/.fonts/hack/Hack*Nerd*Font*Complete*"
       register: hack_exists
       ignore_errors: yes
 
     - name: Download Hack
-      when: hack_exists is failed
+      when: dir_exists is failed or not hack_exists.stat.exists
+
       ansible.builtin.unarchive:
         src: "{{ hack_zip }}"
-        dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+        dest: "{{ lookup('env', 'HOME') }}/.fonts/hack/"
         remote_src: yes
       register: fonts_downloaded
 
+
+    # - name: Print version
+    #   debug:
+    #     msg: "Stats: path={{ lookup('env', 'HOME') }}/.fonts/hack/Hack*Nerd*Font*Complete*, \n{{ dir_exists }}, {{ hack_exists }}, {{ fonts_downloaded }}"
+      
     - name: Update font cache
       become: yes
       command: fc-cache -sv
